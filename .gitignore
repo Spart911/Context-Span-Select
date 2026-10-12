@@ -33,6 +33,7 @@ data/raw/**
 data/processed/**
 !data/processed/.gitkeep
 !data/processed/README.md
+!data/processed/**/README.md
 data/cache/**
 !data/cache/.gitkeep
 

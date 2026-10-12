@@ -1,11 +1,11 @@
 # data/processed
 
-Normalized examples for experiments (`Example` schema in `src/context_span_select/schemas.py`).
+Нормализованные примеры для экспериментов (схема `Example` в `src/context_span_select/schemas.py`).
 
-Suggested layout:
+Рекомендуемая раскладка:
 
 ```text
 processed/<benchmark_id>/<split>.jsonl
 ```
 
-Gitignored except this README / `.gitkeep`.
+В gitignore, кроме этого README / `.gitkeep`.

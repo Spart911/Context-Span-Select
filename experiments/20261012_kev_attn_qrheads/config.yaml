@@ -1,0 +1,48 @@
+experiment:
+  id: 20261012_kev_attn_qrheads
+  title: "Головы внимания Kev-4B как селектор evidence-кусков"
+  hypothesis: >
+    Разреженные full-attention головы внутри Kev-4B концентрируются на gold
+    evidence span'ах; ранжирование кусков пачки по top-K таких голов обходит
+    hybrid-упаковку на жёстких бюджетах символов (4k / 6.8k) без отдельного
+    вызова noul на каждый кусок.
+  description: >
+    Порт пилота Kev attention QR-head в Context-Span-Select. Для каждого
+    вопроса загружаем hybrid@16k пачку пассажей, делаем один forward gate Kev,
+    захватываем внимание query→state по восьми слоям полного внимания
+    (128 голов), скорим головы по доле внимания на gold (QR-стиль), затем
+    переупаковываем пассажи под фиксированные бюджеты через top-K / all /
+    random головы против baseline hybrid. Для каждого шага обязателен строгий
+    трейсинг JSONL + logfile.
+  method: kev_attn_qrhead
+  dataset: internal_spans_hybrid16k_packs
+  metrics:
+    - pack_cover@4000
+    - pack_cover@6800
+    - pack_cover@16000
+    - head_qr_score
+    - wall_ms
+  tags:
+    - kev
+    - attention
+    - qrhead
+    - evidence-selection
+  notes: >
+    Нужны mlx-lm и пакет kev (uv --extra serve из ~/.cache/kev).
+    Файл пачек уже должен лежать в data/processed.
+
+data:
+  packs: data/processed/internal_spans/attn_packs.json
+
+run:
+  detect_n: 128
+  eval_n: 100
+
+budgets: [4000, 6800, 16000]
+topk: [4, 8, 16]
+seed: 20261012
+
+model:
+  name: kev-4b-mlx-8bit
+  weights: RoderickQiu/kev-4b-mlx-8bit
+  pointer: jaredpalmer/kev-4b@139fdd94f1b6a6ad80cc15e08fcb99cac885a101

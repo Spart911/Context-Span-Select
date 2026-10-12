@@ -4,6 +4,8 @@ from context_span_select.select.hybrid_stub import OverlapSelector
 SELECTORS = {
     "overlap_stub": OverlapSelector,
     "hybrid_stub": OverlapSelector,
+    # kev_attn is run via scripts/run_kev_attn_experiment.py (MLX/kev env),
+    # not through this lightweight builder.
 }
 
 

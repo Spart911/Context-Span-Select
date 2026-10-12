@@ -1,22 +1,32 @@
 # YYYYMMDD_slug
 
-## Hypothesis
+## Гипотеза
 
 …
 
-## Setup
+## Описание
 
-- Config: `config.yaml`
-- Benchmark:
-- Selector:
-- Budgets:
+(≥80 символов — также дублируется в `config.yaml` → `experiment.description`)
 
-## Results
+## Сетап
+
+- Конфиг: `config.yaml`
+- Датасет / пачки:
+- Метод / селектор:
+- Бюджеты:
+- Окружение (например kev uv + mlx):
+
+## Логирование
+
+Прогон должен создать `results/runs/<run_id>/` с DESCRIPTION, events.jsonl, run.log, metrics.json.
+
+## Результаты
 
 - Run id:
-- Tables:
-- Figures:
+- Cover / основная метрика:
+- Таблицы: `results/tables/`
+- Артефакты:
 
-## Conclusion
+## Вывод
 
 …

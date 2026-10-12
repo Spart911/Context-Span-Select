@@ -1,9 +1,10 @@
 # results
 
-| Path | Content |
+| Путь | Содержимое |
 |---|---|
-| `runs/` | Per-run JSON metrics (`run_id.json`) |
-| `tables/` | Aggregated CSV / Markdown |
-| `figures/` | Plots (PNG / PDF / SVG) |
+| `runs/` | JSON-метрики по прогонам (`run_id.json`) |
+| `tables/` | Агрегированные CSV / Markdown |
+| `figures/` | Графики (PNG / PDF / SVG) |
 
-All three are gitignored for heavy artifacts; keep small summary tables in `docs/` or experiment READMEs if they must be reviewed in PRs.
+Все три пути в gitignore для тяжёлых артефактов; маленькие сводные таблицы держи в `docs/`
+или в README эксперимента, если их нужно смотреть в PR.

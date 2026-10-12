@@ -1,22 +1,39 @@
-# Experiments
+# Эксперименты
 
-One directory per experiment:
+Одна директория на эксперимент:
 
 ```text
 experiments/YYYYMMDD_short_slug/
-  README.md          # hypothesis, setup, conclusion
-  config.yaml        # copy or extend from configs/
-  notes.md           # optional
+  README.md            # гипотеза, сетап, вывод (обязателен до прогона)
+  config.yaml          # рецепт; должен содержать experiment.description (≥80 символов)
+  LAST_DESCRIPTION.md  # автокопия с последнего прогона
+  LATEST_RUN.txt       # путь к results/runs/<run_id>/
 ```
 
-Heavy outputs go to `results/runs/`, `results/tables/`, `results/figures/` — not into this folder.
+## Строгий лог (обязательно)
 
-## Template
+Каждый прогон идёт через `ExperimentRun` (`context_span_select.experiment`) и пишет:
+
+```text
+results/runs/<run_id>/
+  DESCRIPTION.md / description.json
+  config.json
+  run.log
+  events.jsonl
+  metrics.json
+  summary.json
+  artifacts/
+```
+
+Тихих прогонов без лога нет. В конфиге должны быть заполнены
+`experiment.{id,title,description,hypothesis,method,dataset,metrics}`.
+
+## Шаблон
 
 ```bash
-slug=$(date +%Y%m%d)_hotpot_overlap_smoke
+slug=$(date +%Y%m%d)_kev_attn_qrheads
 mkdir -p experiments/$slug
-cp configs/benchmarks/hotpotqa_distractor.yaml experiments/$slug/config.yaml
+# скопируй существующий рецепт или configs/default.yaml, заполни поля description
 ```
 
-Write a short `README.md` before the run: goal, selector, budgets, expected metric.
+Тяжёлые артефакты — только в `results/`, не внутри `experiments/`.

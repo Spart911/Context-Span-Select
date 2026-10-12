@@ -1,0 +1,21 @@
+extends: configs/default.yaml
+benchmark_id: longbench_qa
+
+data:
+  subsets:
+    - qasper
+    - multifieldqa_en
+    - hotpotqa
+    - 2wikimqa
+    - narrativeqa
+  limit: null
+
+eval:
+  levels: [C, D]
+  metrics:
+    - dataset_score
+    - tokens_kept
+    - compression_ratio
+
+pack:
+  budgets_tokens: [512, 1024, 2048, 4096]

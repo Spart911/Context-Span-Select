@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "context-span-select"
+version = "0.1.0"
+description = "Adaptive evidence / span selection so an answering LLM gets packed context, not full documents."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Context-Span-Select contributors" }]
+keywords = ["rag", "context-compression", "evidence-selection", "long-context"]
+dependencies = [
+  "numpy>=1.26",
+  "pyyaml>=6.0",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.6",
+]
+hf = [
+  "datasets>=3.0",
+  "huggingface-hub>=0.25",
+]
+eval = [
+  "scikit-learn>=1.4",
+  "matplotlib>=3.8",
+]
+
+[project.scripts]
+css = "app.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/context_span_select", "app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "app", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

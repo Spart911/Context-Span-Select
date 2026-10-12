@@ -1,0 +1,16 @@
+extends: configs/default.yaml
+benchmark_id: hotpotqa_distractor
+
+data:
+  split: validation
+  limit: null
+
+eval:
+  levels: [A, C]
+  metrics:
+    - supporting_fact_recall
+    - em
+    - f1
+
+pack:
+  budgets_chars: [2000, 4000, 8000]

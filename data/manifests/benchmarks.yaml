@@ -1,0 +1,122 @@
+# Machine-readable registry of public benchmarks for Context-Span-Select.
+# Status: planned | partial | ready
+version: 1
+
+benchmarks:
+  - id: hotpotqa_distractor
+    tier: 1
+    status: planned
+    task: multi_hop_qa_with_supporting_facts
+    metrics: [supporting_fact_recall, em, f1]
+    levels: [A, C]
+    hub: hotpot_qa
+    config: distractor
+    split: validation
+    notes: Primary evidence-selection baseline.
+
+  - id: nq
+    tier: 1
+    status: planned
+    task: open_domain_qa
+    metrics: [em, f1, null_auroc]
+    levels: [B, C]
+    hub: google-research-datasets/natural_questions
+    notes: Includes null / unanswerable for refuse gate.
+
+  - id: squad_v2
+    tier: 1
+    status: planned
+    task: reading_comprehension_unanswerable
+    metrics: [em, f1, no_answer]
+    levels: [B, C]
+    hub: rajpurkar/squad_v2
+    split: validation
+
+  - id: longbench_qa
+    tier: 1
+    status: planned
+    task: long_context_qa
+    metrics: [dataset_score, tokens_kept]
+    levels: [C, D]
+    hub: THUDM/LongBench
+    subsets:
+      - qasper
+      - multifieldqa_en
+      - hotpotqa
+      - 2wikimqa
+      - narrativeqa
+    notes: De-facto suite for context compression papers.
+
+  - id: qasper
+    tier: 1
+    status: planned
+    task: scientific_doc_qa
+    metrics: [evidence_f1, answer_f1]
+    levels: [A, C]
+    hub: allenai/qasper
+    split: validation
+
+  - id: benchpress
+    tier: 2
+    status: planned
+    task: context_compression_suite
+    metrics: [qa_score, compression_ratio]
+    levels: [C, D]
+    url: https://github.com/lil-lab/benchpress
+    notes: Standardized 10-dataset compression evaluation (2025).
+
+  - id: asqa
+    tier: 2
+    status: planned
+    task: ambiguous_long_form_qa
+    metrics: [str_em, rouge, groundedness]
+    levels: [C]
+    hub: din0s/asqa
+
+  - id: beir
+    tier: 2
+    status: planned
+    task: zero_shot_retrieval
+    metrics: [ndcg@10]
+    levels: [A]
+    url: https://github.com/beir-cellar/beir
+
+  - id: rgb
+    tier: 2
+    status: planned
+    task: rag_robustness
+    metrics: [noise_robustness, refusal]
+    levels: [B, C]
+    url: https://github.com/chen700564/RGB
+
+  - id: longmemeval
+    tier: 2
+    status: planned
+    task: long_session_evidence_recall
+    metrics: [recall@k]
+    levels: [A]
+    url: https://github.com/xiaowu0162/LongMemEval
+
+  - id: loft_rag
+    tier: 3
+    status: planned
+    task: long_context_rag_128k
+    metrics: [accuracy]
+    levels: [C, D]
+    notes: DeepMind LOFT RAG slice; optional later.
+
+  - id: longbench_v2
+    tier: 3
+    status: planned
+    task: ultra_long_mcq
+    metrics: [accuracy]
+    levels: [C]
+    hub: THUDM/LongBench-v2
+
+  - id: musique
+    tier: 3
+    status: planned
+    task: multi_hop_qa
+    metrics: [em, f1]
+    levels: [A, C]
+    hub: dgslibisey/MuSiQue

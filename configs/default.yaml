@@ -1,0 +1,32 @@
+project: context-span-select
+seed: 20261012
+
+paths:
+  data_raw: data/raw
+  data_processed: data/processed
+  data_cache: data/cache
+  results_runs: results/runs
+  results_tables: results/tables
+  results_figures: results/figures
+  logs: logs
+
+pack:
+  chunk_chars: 400
+  window: 1
+  budgets_chars: [4000, 6800, 16000]
+
+selector:
+  name: hybrid_stub
+  params: {}
+
+gate:
+  enabled: false
+  name: none
+  threshold: 0.5
+
+reader:
+  enabled: false
+  name: none
+
+eval:
+  levels: [A]  # A evidence | B gate | C reader | D cost
